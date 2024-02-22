@@ -1,4 +1,4 @@
-export function XFollowCard ({ formatUserName, userName, name, isFollowing }){
+export function XFollowCard ({ children, userName, isFollowing }){
   console.log(isFollowing)
 
   return (
@@ -9,9 +9,9 @@ export function XFollowCard ({ formatUserName, userName, name, isFollowing }){
           alt="El avatar de midudev"
           src={`https://unavatar.io/${userName}`} />
         <div className='x-followCard-info'>
-          <strong>{name}</strong>
+          <strong>{children}</strong>
           <span 
-          className='x-followCard-infoUsername'>{formatUserName(userName)}</span>
+          className='x-followCard-infoUsername'>@{userName}</span>
         </div>
       </header>
       <aside>
