@@ -31,16 +31,20 @@ function App() {
   const updateBoard = (index) => {
     const newBoard = [...board]
     newBoard[index] = turn // x u o
-    setBoard(newBoard)
+    setBoard(newBoard) //actualizamos el dashboard
 
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
-    setTurn(newTurn)
+    setTurn(newTurn) //actualizamos el turno
     console.log({index})
   }
 
   return (
     <main className='board'>
-      <h1>Tic tac toe</h1>
+      <h1>Gato 😺</h1>
+      <p>
+        Hola soy Isita y este es mi primer juego de gato
+      </p>
+      
       <section className='game'>
         {
           board.map((_, index) => {
