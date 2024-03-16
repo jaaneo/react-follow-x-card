@@ -21,22 +21,60 @@ const Square = ({ children, isSelected, updateBoard, index }) => {
   )
 }
 
+const WINNER_COMBOS = [ //combinaciones ganadoras
+  [0, 1, 2], // horizontal
+  [3, 4, 5], // horizontal
+  [6, 7, 8], // horizontal
+  [0, 3, 6], // vertical
+  [1, 4, 7], // vertical
+  [2, 5, 8], // vertical
+  [0, 4, 8], // diagonal
+  [2, 4, 6], // diagonal
+]
+
 function App() {
   const [board, setBoard] = useState(
     Array(9).fill(null)
   )
 
   const [turn, setTurn] = useState(TURNS.O)
+  // null es que no hay ganador, false es que hay empate
+  const [winner, setWinner] = useState(null)
+
+  const checkWinner = (boardToCheck) => {
+    // recorrer todas las combinaciones ganadoras
+    // y verificar si hay un ganador
+    for (const combo of WINNER_COMBOS) {
+      const [a, b, c] = combo
+      if (
+        boardToCheck[a] && // si es diferente de null
+        boardToCheck[a] === boardToCheck[b] && // si es igual a b
+        boardToCheck[a] === boardToCheck[c] // si es igual a c
+      ){
+        return boardToCheck[a]
+      }
+    }
+    // si no hay ganador
+    return null
+  }
 
   const updateBoard = (index) => {
+
+    if (board[index] || winner) return
     const newBoard = [...board]
     newBoard[index] = turn // x u o
     setBoard(newBoard) //actualizamos el dashboard
 
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn) //actualizamos el turno
-    console.log({index})
+    console.log({index}) // para ver el index en consola
+    const newWinner = checkWinner(newBoard) //verificamos si hay un ganador
+    if (newWinner){
+      setWinner(newWinner) //actualizamos el ganador
+      console.log("Hay un ganador", newWinner)
+    }
   }
+
 
   return (
     <main className='board'>
