@@ -3,8 +3,8 @@ import './App.css'
 import './index.css'
 
 const TURNS = {
-  X: 'x',
-  O: 'o'
+  X: 'X',
+  O: 'O'
 }
 
 const Square = ({ children, isSelected, updateBoard, index }) => {
@@ -71,7 +71,7 @@ function App() {
     const newWinner = checkWinner(newBoard) //verificamos si hay un ganador
     if (newWinner){
       setWinner(newWinner) //actualizamos el ganador
-      console.log("Hay un ganador", newWinner)
+      console.log("Hay un ganador", newWinner) // para ver el ganador en consola
     }
   }
 
@@ -106,8 +106,30 @@ function App() {
         <Square isSelected={turn === TURNS.O}>
           {TURNS.O}
         </Square>
-
       </section>
+      {
+        winner !== null && ( // si no es null
+          // seccion ganador
+          <section className="winner"> 
+            <div className='text'>
+              <h2>
+                { // si es null
+                  winner === false // si es falso
+                    ? 'Empate' // empate
+                    : `Ganador: ${winner}` // si no, ganador
+                }
+              </h2>
+              <header className='win'>
+                {winner && <Square>{winner}</Square>}
+              </header>
+
+              <footer>
+                <button>Jugar otra vez</button>
+              </footer>
+            </div>
+          </section>
+        )
+      }
     </main>
   )
 }
