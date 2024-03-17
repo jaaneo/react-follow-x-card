@@ -1,8 +1,9 @@
 import { useState } from 'react'
 
-export function XFollowCard ({ children, userName }){
-  const [isFollowing, setIsFollowing] = useState(false)
+export function XFollowCard ({ children, userName, initialIsFolliwing }){
+  const [isFollowing, setIsFollowing] = useState(initialIsFolliwing)
 
+  console.log('Render with userName: ', userName)
   const text = isFollowing ? 'Siguiendo' : 'Seguir'
   const buttonClassName = isFollowing
     ? 'x-followCard-button is-following'

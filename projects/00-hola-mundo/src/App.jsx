@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import { XFollowCard } from './XFollowCard'
 
 export function App () {
+
   return (
     <section className='App'>
-      <XFollowCard isFollowing userName="midudev" >
+      <XFollowCard isFollowing initialIsFolliwing userName="midudev">
         Miguel Ángel Durán
       </XFollowCard> 
 
@@ -15,8 +16,7 @@ export function App () {
 
       <XFollowCard isFollowing userName="dmtdomotica">
         DMT Smarhome
-      </XFollowCard>
-      
+      </XFollowCard>   
     </section>
   )
 }
